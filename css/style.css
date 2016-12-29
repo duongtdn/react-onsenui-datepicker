@@ -1,0 +1,108 @@
+
+.calendar {  
+  width : 100%;
+}
+
+.calendar.show {
+  left : 0;
+}
+
+.calendar.hide {
+  left: 100%;
+}
+
+.daybox {  
+  margin: auto;
+  border : 1px solid rgba(255,255,255,.5);;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;  
+  padding : 4px;
+}
+
+.daybox:hover {  
+  border : 1px solid deepskyblue;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;  
+  padding : 4px;
+}
+
+.day-selected {
+  border : 1px solid deepskyblue;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;  
+  padding : 4px;
+}
+
+.day-inactive {
+  color : #aaa;
+}
+
+.today {
+  border : 1px solid deepskyblue;
+  background: deepskyblue;
+  color : white;
+}
+
+/* animation */
+
+/* slide left */
+@-webkit-keyframes slide-left {
+  0% {
+    left: 100%;
+    width : 100%;
+  }
+  100% {
+    left: 0;
+    width : 100%;
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    left: 100%;
+    width : 100%;
+  }
+  100% {
+    left: 0;
+    width : 100%;
+  }
+}
+
+.animation-slide-left {
+  pointer-events: none;
+  -webkit-animation: slide-left .7s ease-in-out forwards;
+          animation: slide-left .7s ease-in-out forwards;
+}
+
+/* slide right */
+
+@-webkit-keyframes slide-right {
+  0% {
+    left: 0;
+    width : 100%;
+  }
+  100% {
+    left: 100%;
+    width : 100%;
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    left: 0;
+    width : 100%;
+  }
+  100% {
+    left: 100%;
+    width : 100%;
+  }
+}
+
+.animation-slide-right {
+  pointer-events: none;
+  -webkit-animation: slide-right .7s ease-in-out forwards;
+          animation: slide-right .7s ease-in-out forwards;
+}
