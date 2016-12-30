@@ -22,7 +22,7 @@ function create ({ month, year }) {
   
   const firstDay = new Date(year, month, 1);
   let startDay = firstDay.getDay() - 1;
-  if (startDay === -1 ) { startDay = 7; }
+  if (startDay === -1 ) { startDay = 6; }
 
   let monthLength = months[month].length;
   // process for leap year
@@ -46,23 +46,29 @@ function create ({ month, year }) {
   if (index > 0) {
     // fill in day of last month to first week    
     for (let i = 0; i < index; i++ ) {
-      firstWeek.push({
-        day : lastDaysOfLastMonth,
-        month : previousMonth,
-        year : yearOfPreviousMonth,
-        events : {}
-      });
+      const day = lastDaysOfLastMonth;
+      const month = previousMonth;
+      const year = yearOfPreviousMonth;
+
+      const d = new Date(year, month, day);
+      const timestamp = d.getTime();
+
+      const events = {};
+
+      firstWeek.push({ day, month, year, timestamp, events });
+
       lastDaysOfLastMonth++;
     }       
   }
   // continue to fill in first week  
   for (let i = index; i < 7; i++ ) {
-    firstWeek.push({
-      day : daysOfMonth,
-      month : month,
-      year : year,
-      events : {}
-    });
+    const day = daysOfMonth;
+    const d = new Date(year, month, day);
+    const timestamp = d.getTime();
+    const events = {};
+
+    firstWeek.push({ day, month, year, timestamp, events });
+
     daysOfMonth++;
   } 
   result.push(firstWeek);
@@ -72,20 +78,21 @@ function create ({ month, year }) {
     const week = [];
     for (let i = 0; i < 7; i++) {
       if (daysOfMonth <= monthLength) {
-        week.push({
-          day : daysOfMonth,
-          month : month,
-          year : year,
-          events : {}
-        });
+        const day = daysOfMonth;
+        const d = new Date(year, month, day);
+        const timestamp = d.getTime();
+        const events = {};
+
+        week.push({day, month, year, timestamp, events});
         daysOfMonth++;                   
       } else {
-        week.push({
-          day : firstDaysOfNextMonth,
-          month : nextMonth,
-          year : yearOfNextMonth,
-          events : {}
-        });
+        const day = firstDaysOfNextMonth;
+        const month = nextMonth;
+        const year = yearOfNextMonth;
+        const d = new Date(year, month, day);
+        const timestamp = d.getTime();
+        const events = {};
+        week.push({day, month, year, timestamp, events});
         firstDaysOfNextMonth++; 
       }
     }

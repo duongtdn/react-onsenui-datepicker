@@ -19,7 +19,7 @@ const App = content => (
 
       <ListItem>
         <label> Select a date </label>
-        <DatePicker />
+        <DatePicker onSelectDate = {date => console.log(date)} />
       </ListItem>
 
       <ListItem>
