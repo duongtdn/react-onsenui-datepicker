@@ -11,9 +11,11 @@ class DateBox extends Component {
   } 
 
   render() {
+    const selectedDate = this.props.selectedDate || 'select a date'
     return (
-      <div className = 'datebox' >
-        <label> dd/mmm/yyyy </label> <Icon icon ='fa-calendar' />
+      <div className = 'datebox' onClick ={this.props.onClick} >
+        <label> {selectedDate} </label>
+        <Icon icon ='fa-calendar' />
       </div>
     );
   }
@@ -135,6 +137,7 @@ export default class extends Component {
       calendar : [], 
       month : 0, 
       year : 0, 
+      selectedDate : '',
       showCalendar : false,
       animateCalendar : false 
     };
@@ -161,8 +164,8 @@ export default class extends Component {
 
   render() {
     return (
-      <Page >
-        <Button onClick = {this.openCalendar} > showCalendar </Button>
+      <div >
+        <DateBox onClick = {this.openCalendar} selectedDate = {this.state.selectedDate} /> 
         <Calendar calendar = {this.state.calendar}  
                   show = {this.state.showCalendar} 
                   anim = {this.state.animateCalendar}   
@@ -170,7 +173,7 @@ export default class extends Component {
                   onSelectDate = {this.selectDate}
                   toPreviousMonth = {this.toPreviousMonth} 
                   toNextMonth = {this.toNextMonth} />
-      </Page>
+      </div>
     )
   }
 
@@ -202,7 +205,8 @@ export default class extends Component {
   }
 
   selectDate(date) {
-    this.setState({ animateCalendar :true, showCalendar : false });
+    const selectedDate = `${date.day} ${calendar.month.map(date.month,'short')} ${date.year}`;
+    this.setState({ animateCalendar :true, showCalendar : false, selectedDate });
     setTimeout(() => {
       this.setState({ animateCalendar :false, showCalendar : false });
       if (this.props.onSelectDate) {

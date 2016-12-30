@@ -7,11 +7,13 @@
   "license": "MIT",
   "scripts": {
     "build": "babel src -d dist",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "compile": "npm run build && browserify dist/ -o bundle.js"
   },
   "dependencies": {
     "onsenui": "^2.0.4",
     "react": "^15.4.1",
+    "react-dom": "^15.4.1",
     "react-onsenui": "^1.0.4"
   },
   "devDependencies": {

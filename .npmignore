@@ -1,4 +1,7 @@
 src/
 node_modules/
+dist/index.js
+index.html
+bundle.js
 .vscode
 .babelrc

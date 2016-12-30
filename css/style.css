@@ -1,5 +1,7 @@
 
 .calendar {  
+  position: fixed;
+  top: 0;
   width : 100%;
 }
 
@@ -44,6 +46,29 @@
   border : 1px solid deepskyblue;
   background: deepskyblue;
   color : white;
+}
+
+.datebox {
+  min-width: 160px;
+
+  padding-left : 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  border : 1px solid grey;
+  border-radius: 4px;
+
+}
+
+.datebox label {
+  color: grey;
+  padding-right: 8px;
+  font-size: 16px;
+}
+
+.datebox ons-icon {
+  float: right;
 }
 
 /* animation */
