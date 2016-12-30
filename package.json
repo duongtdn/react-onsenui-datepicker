@@ -2,6 +2,10 @@
   "name": "react-onsenui-datepicker",
   "version": "1.0.0",
   "description": "DatePicker based on react-onsenui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duongtdn/react-onsenui-datepicker"
+  },
   "main": "index.js",
   "author": "duongtdn",
   "license": "MIT",
