@@ -198,6 +198,9 @@ export default class extends Component {
   }
 
   openCalendar() {
+    if (this.props.preOpenCalendar) {
+      this.props.preOpenCalendar();
+    }
     this.setState({ animateCalendar :true, showCalendar : true });
     setTimeout(() => {
       this.setState({ animateCalendar :false, showCalendar : true });
