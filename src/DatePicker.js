@@ -155,6 +155,11 @@ export default class extends Component {
     const year = today.getFullYear();
 
     this.updateCalendar({ month, year });
+
+    if (this.props.selectedDate) {
+      const selectedDate = this.formatDate(this.props.selectedDate);
+      this.setState({ selectedDate });
+    }
   }
 
   updateCalendar({month, year}) {    
@@ -208,7 +213,7 @@ export default class extends Component {
   }
 
   selectDate(date) {
-    const selectedDate = `${date.day} ${calendar.month.map(date.month,'short')} ${date.year}`;
+    const selectedDate = this.formatDate(date);
     this.setState({ animateCalendar :true, showCalendar : false, selectedDate });
     setTimeout(() => {
       this.setState({ animateCalendar :false, showCalendar : false });
@@ -216,6 +221,10 @@ export default class extends Component {
         this.props.onSelectDate(date);
       }      
     }, 750);
+  }
+
+  formatDate(date) {
+    return `${date.day} ${calendar.month.map(date.month,'short')} ${date.year}`;
   }
 
 }
