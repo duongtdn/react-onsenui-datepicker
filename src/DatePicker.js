@@ -157,7 +157,13 @@ export default class extends Component {
     this.updateCalendar({ month, year });
 
     if (this.props.selectedDate) {
-      const selectedDate = this.formatDate(this.props.selectedDate);
+      const d = new Date(this.props.selectedDate);
+      const date = {
+        day : d.getDate(),
+        month : d.getMonth(),
+        year : d.getFullYear()
+      };
+      const selectedDate = this.formatDate(date);
       this.setState({ selectedDate });
     }
   }
