@@ -14,7 +14,7 @@
     "prepublish": "npm run build",
     "compile": "npm run build && browserify dist/ -o bundle.js"
   },
-  "dependencies": {
+  "peerDependencies": {
     "onsenui": "^2.0.4",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
