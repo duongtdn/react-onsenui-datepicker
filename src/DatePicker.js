@@ -8,7 +8,6 @@ import calendar from './calendar'
 class DateBox extends Component {
   constructor(props) {
     super(props);
-    this.isSelectedDate = this.isSelectedDate.bind(this);
   } 
 
   render() {
@@ -39,6 +38,7 @@ class Calendar extends Component {
     this.renderToolbar = this.renderToolbar.bind(this);    
     this.isToday = this.isToday.bind(this);
     this.isThisMonth = this.isThisMonth.bind(this);
+    this.isSelectedDate = this.isSelectedDate.bind(this);
 
   }  
 
