@@ -24,7 +24,7 @@ class DateBox extends Component {
 class Calendar extends Component {
   constructor(props) {
     super(props);
-    this.state = { data : [], today : 0 };
+    this.state = { data : [], today : 0, selectedDate : null };
 
     const d = new Date();
     this.today = {
@@ -39,8 +39,15 @@ class Calendar extends Component {
     this.isToday = this.isToday.bind(this);
     this.isThisMonth = this.isThisMonth.bind(this);
     this.isSelectedDate = this.isSelectedDate.bind(this);
+    this.onSelectDate = this.onSelectDate.bind(this);
 
   }  
+
+  componentWillMount() {
+    if (this.props.selectedDate) {
+      this.setState({ selectedDate : this.props.selectedDate });
+    }
+  }
 
   isToday(date) {
     return date.year === this.today.year && 
@@ -49,8 +56,8 @@ class Calendar extends Component {
   }
 
   isSelectedDate(date) {
-    if (this.props.selectedDate) {
-      const d = new Date(this.props.selectedDate);
+    if (this.state.selectedDate) {
+      const d = new Date(this.state.selectedDate);
       const selectedDate = {
         day : d.getDate(),
         month : d.getMonth(),
@@ -68,6 +75,11 @@ class Calendar extends Component {
     return date.month === this.props.month;
   }
 
+  onSelectDate(date) {
+    this.setState({ selectedDate : date.timestamp });
+    this.props.onSelectDate(date);
+  }
+
   renderRow(row, index) {
     const week = row; 
     const thisMonth = parseInt(this.props.month);   
@@ -83,7 +95,7 @@ class Calendar extends Component {
                 <Col key = {`${date.month}.${date.day}`} 
                      style = {{textAlign : 'center'}} > 
                   <div className = {`daybox ${inactive} ${highlight} ${outline}`}
-                       onClick = {() => this.props.onSelectDate(date)} > 
+                       onClick = {() => this.onSelectDate(date)} > 
                     {date.day} 
                   </div> 
                 </Col>
