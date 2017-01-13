@@ -154,8 +154,7 @@ class Calendar extends Component {
               renderRow = {this.renderRow}
               renderHeader = {this.renderHeader} />
         <Button modifier = 'quiet' onClick = {() => this.props.onSelectDate(null)} > 
-          <Icon icon = 'md-arrow-back' />
-          Back 
+          <Icon icon = 'md-arrow-back' /> Back 
         </Button>      
       </Page>
     );
