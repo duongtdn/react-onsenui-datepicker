@@ -253,8 +253,20 @@ export default class extends Component {
   }
 
   selectDate(date) {
-    const selectedDate = date ? this.formatDate(date) : '';
-    this.setState({ animateCalendar :true, showCalendar : false, selectedDate });
+    if (date) {
+      const selectedDate = this.formatDate(date);
+      this.setState({ 
+        animateCalendar :true, 
+        showCalendar : false, 
+        selectedDate 
+      });
+    } else {
+      this.setState({ 
+        animateCalendar :true, 
+        showCalendar : false,
+      });
+    }
+    
     setTimeout(() => {
       this.setState({ animateCalendar :false, showCalendar : false });
       if (this.props.onSelectDate) {
