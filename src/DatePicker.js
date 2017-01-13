@@ -8,6 +8,7 @@ import calendar from './calendar'
 class DateBox extends Component {
   constructor(props) {
     super(props);
+    this.isSelectedDate = this.isSelectedDate.bind(this);
   } 
 
   render() {
@@ -47,6 +48,22 @@ class Calendar extends Component {
            date.day === this.today.day;
   }
 
+  isSelectedDate(date) {
+    if (this.props.selectedDate) {
+      const d = new Date(this.props.selectedDate);
+      const selectedDate = {
+        day : d.getDate(),
+        month : d.getMonth(),
+        year : d.getFullYear()
+      };
+      return date.year === selectedDate.year &&
+             date.month === selectedDate.month &&
+             date.day === selectedDate.day;
+    } else {
+      return false;
+    }
+  }
+
   isThisMonth(date) {
     return date.month === this.props.month;
   }
@@ -61,10 +78,11 @@ class Calendar extends Component {
             week.map( date => {
               const inactive = this.isThisMonth(date) ? '' : 'day-inactive';
               const highlight = this.isToday(date) ? 'today' : '';
+              const outline = this.isSelectedDate(date) ? 'day-selected' : '';
               return (
                 <Col key = {`${date.month}.${date.day}`} 
                      style = {{textAlign : 'center'}} > 
-                  <div className = {`daybox ${inactive} ${highlight}`}
+                  <div className = {`daybox ${inactive} ${highlight} ${outline}`}
                        onClick = {() => this.props.onSelectDate(date)} > 
                     {date.day} 
                   </div> 
@@ -181,6 +199,7 @@ export default class extends Component {
                   show = {this.state.showCalendar} 
                   anim = {this.state.animateCalendar}   
                   month = {this.state.month} year = {this.state.year}   
+                  selectedDate = {this.props.selectedDate}
                   onSelectDate = {this.selectDate}
                   toPreviousMonth = {this.toPreviousMonth} 
                   toNextMonth = {this.toNextMonth} />
