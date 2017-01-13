@@ -152,7 +152,11 @@ class Calendar extends Component {
             className = {`calendar ${animation}`} >
         <List dataSource = {this.props.calendar}
               renderRow = {this.renderRow}
-              renderHeader = {this.renderHeader} />      
+              renderHeader = {this.renderHeader} />
+        <Button modifier = 'quiet' onClick = {() => this.props.onSelectDate(null)} > 
+          <Icon icon = 'md-arrow-back' />
+          Back 
+        </Button>      
       </Page>
     );
   }
@@ -250,11 +254,11 @@ export default class extends Component {
   }
 
   selectDate(date) {
-    const selectedDate = this.formatDate(date);
+    const selectedDate = date ? this.formatDate(date) : '';
     this.setState({ animateCalendar :true, showCalendar : false, selectedDate });
     setTimeout(() => {
       this.setState({ animateCalendar :false, showCalendar : false });
-      if (this.props.onSelectDate) {
+      if (selectedDate.length > 0 && this.props.onSelectDate) {
         this.props.onSelectDate(date);
       }      
     }, 750);
