@@ -257,7 +257,7 @@ export default class extends Component {
     this.setState({ animateCalendar :true, showCalendar : false, selectedDate });
     setTimeout(() => {
       this.setState({ animateCalendar :false, showCalendar : false });
-      if (selectedDate.length > 0 && this.props.onSelectDate) {
+      if (this.props.onSelectDate) {
         this.props.onSelectDate(date);
       }      
     }, 750);
